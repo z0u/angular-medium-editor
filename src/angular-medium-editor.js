@@ -6,9 +6,11 @@ angular.module('angular-medium-editor', [])
   .directive('mediumEditor', function() {
 
     function toInnerText(value) {
-      var tempEl = document.createElement('div');
+      var tempEl = document.createElement('div'),
+          text;
       tempEl.innerHTML = value;
-      return tempEl.innerText.trim();
+      text = tempEl.textContent || '';
+      return text.trim();
     }
 
     return {
