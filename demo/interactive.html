@@ -18,6 +18,7 @@
             <div name="text" ng-model="text" required medium-editor bind-options="{'placeholder': 'This is a placeholder',
                     'buttons': ['bold', 'italic', 'underline', 'header1', 'header2', 'quote', 'orderedlist', 'unorderedlist']}"></div>
         </form>
+        <button type="button" ng-click="text=''">Clear</button>
         <h2>Validation:</h2>
         <pre>{{demo.text.$error}}</pre>
         <h2>Model:</h2>

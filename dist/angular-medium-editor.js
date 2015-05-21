@@ -1,10 +1,4 @@
-/**
- * angular-medium-editor
- * @version v0.1.0 - 2015-05-20
- * @link https://github.com/thijsw/angular-medium-editor
- * @author Thijs Wijnmaalen <thijs@wijnmaalen.name>
- * @license MIT License, http://www.opensource.org/licenses/MIT
- */
+/*global MediumEditor */
 'use strict';
 
 angular.module('angular-medium-editor', [])
@@ -36,8 +30,10 @@ angular.module('angular-medium-editor', [])
         ngModel.$isEmpty = function(value) {
           if (/[<>]/.test(value)) {
             return toInnerText(value).length === 0;
-          } else {
+          } else if (value) {
             return value.length === 0;
+          } else {
+            return true;
           }
         };
 

@@ -30,8 +30,10 @@ angular.module('angular-medium-editor', [])
         ngModel.$isEmpty = function(value) {
           if (/[<>]/.test(value)) {
             return toInnerText(value).length === 0;
-          } else {
+          } else if (value) {
             return value.length === 0;
+          } else {
+            return true;
           }
         };
 
