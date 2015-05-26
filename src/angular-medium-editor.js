@@ -26,7 +26,7 @@ angular.module('angular-medium-editor', [])
 
         ngModel.$render = function() {
           iElement.html(ngModel.$viewValue);
-          ngModel.editor.placeholders.updatePlaceholder(iElement[0]);
+          ngModel.editor.getExtensionByName('placeholder').updatePlaceholder(iElement[0]);
         };
 
         ngModel.$isEmpty = function(value) {
