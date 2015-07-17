@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('angular-medium-editor', [])
+angular.module('angular-medium-editor', ['ngSanitize'])
 
-  .directive('mediumEditor', function() {
+  .directive('mediumEditor', function($sanitize) {
 
     return {
       require: 'ngModel',
@@ -72,10 +72,10 @@ angular.module('angular-medium-editor', [])
             this.editor = new MediumEditor(iElement, opts);
           }
 
-          iElement.html(ctrl.$isEmpty(ctrl.$viewValue) ? '' : ctrl.$viewValue);
-          
+          iElement.html($sanitize(ctrl.$viewValue));
+
           // hide placeholder when view is not empty
-          if(!ctrl.$isEmpty(ctrl.$viewValue)) angular.element(iElement).removeClass('medium-editor-placeholder'); 
+          if(!ctrl.$isEmpty(ctrl.$viewValue)) angular.element(iElement).removeClass('medium-editor-placeholder');
         };
 
       }
