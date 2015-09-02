@@ -1,9 +1,9 @@
 /*global MediumEditor */
 'use strict';
 
-angular.module('angular-medium-editor', [])
+angular.module('angular-medium-editor', ['ngSanitize'])
 
-  .directive('mediumEditor', function() {
+  .directive('mediumEditor', ["$sanitize", function($sanitize) {
 
     function toInnerText(value) {
       var tempEl = document.createElement('div'),
@@ -25,7 +25,7 @@ angular.module('angular-medium-editor', [])
         ngModel.editor = new MediumEditor(iElement, scope.bindOptions);
 
         ngModel.$render = function() {
-          iElement.html(ngModel.$viewValue || "");
+          iElement.html($sanitize(ngModel.$viewValue));
           ngModel.editor.getExtensionByName('placeholder').updatePlaceholder(iElement[0]);
         };
 
@@ -48,9 +48,9 @@ angular.module('angular-medium-editor', [])
         });
 
         scope.$on('$destroy', function() {
-          ctrl.editor.destroy();
+          ngModel.editor.destroy();
         });
       }
     };
 
-  });
+  }]);
