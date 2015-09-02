@@ -73,3 +73,10 @@ _(More coming soon)_
 ## Examples
 _(Coming soon)_
 
+
+## Building
+
+```
+npm install
+./node_modules/grunt-cli/bin/grunt
+```
