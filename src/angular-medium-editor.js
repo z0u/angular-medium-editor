@@ -25,7 +25,7 @@ angular.module('angular-medium-editor', ['ngSanitize'])
         ngModel.editor = new MediumEditor(iElement, scope.bindOptions);
 
         ngModel.$render = function() {
-          iElement.html($sanitize(ngModel.$viewValue || ""));
+          ngModel.editor.setContent($sanitize(ngModel.$viewValue || ""));
           var placeholder = ngModel.editor.getExtensionByName('placeholder');
           if (placeholder) {
             placeholder.updatePlaceholder(iElement[0]);
