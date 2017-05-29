@@ -101,6 +101,14 @@ scope.mediumBindOptions = {
 ## Running the demo
 If you want to view the included demo, you have to run `bower` first in order to retrieve the dependencies.
 
+## Building
+
+```
+npm install
+npm install grunt-cli
+./node_modules/grunt-cli/bin/grunt
+```
+
 ## License
 The MIT License
 
