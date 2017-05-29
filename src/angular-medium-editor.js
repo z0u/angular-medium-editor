@@ -3,7 +3,7 @@
 
 angular.module('angular-medium-editor', [])
 
-  .directive('mediumEditor', function() {
+  .directive('mediumEditor', ['$sanitize', function($sanitize) {
 
     function toInnerText(value) {
       var tempEl = document.createElement('div'),
@@ -25,7 +25,8 @@ angular.module('angular-medium-editor', [])
         ngModel.editor = new MediumEditor(iElement, scope.bindOptions);
 
         ngModel.$render = function() {
-          ngModel.editor.setContent(ngModel.$viewValue || "");
+          var content = $sanitize(ngModel.$viewValue || "");
+          ngModel.editor.setContent(content);
           var placeholder = ngModel.editor.getExtensionByName('placeholder');
           if (placeholder) {
             placeholder.updatePlaceholder(iElement[0]);
@@ -56,4 +57,4 @@ angular.module('angular-medium-editor', [])
       }
     };
 
-  });
+  }]);
